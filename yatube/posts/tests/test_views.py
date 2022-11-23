@@ -217,7 +217,7 @@ class PostViewsTest(TestCase):
     def test_follow_and_new_post_in_follow(self):
         """Подписка на пользователя и появление нового поста в подписке"""
         Follow.objects.all().delete()
-        Follow.objects.create(user=self.user, author=self.post.author)
+        Follow.objects.get_or_create(user=self.user, author=self.post.author)
         response = self.auth.get(reverse('posts:follow_index'))
         follow_page = response.context['page_obj']
         self.assertIn(self.post, follow_page)
@@ -231,7 +231,7 @@ class PostViewsTest(TestCase):
 
     def test_check_new_post_in_unfollow(self):
         """Новый пост не появляется у пользователя который не подписан"""
-        Follow.objects.create(user=self.user, author=self.post.author)
+        Follow.objects.get_or_create(user=self.user, author=self.post.author)
         new_user = User.objects.create(username='NewUser')
         self.auth.force_login(new_user)
         response = self.auth.get(reverse('posts:follow_index'))
