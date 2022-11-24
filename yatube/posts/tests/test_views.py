@@ -224,7 +224,9 @@ class PostViewsTest(TestCase):
 
     def test_unfollow(self):
         """Удаление подписок"""
-        Follow.objects.filter(user=self.user, author=self.post.author).delete()
+        follow = Follow.objects.filter(user=self.user, author=self.post.author)
+        if follow.exists():
+            follow.delete()
         response = self.auth.get(reverse('posts:follow_index'))
         follow_page = response.context['page_obj']
         self.assertNotIn(self.post, follow_page)

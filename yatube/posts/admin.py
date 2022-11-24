@@ -16,7 +16,7 @@ class GroupAdmin(admin.ModelAdmin):
 
 
 class CommentAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('pk', 'post', 'text', 'author',)
 
 
 admin.site.register(Post, PostAdmin)
