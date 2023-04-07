@@ -7,6 +7,11 @@ SECRET_KEY = 't$m5h7rslzhj-%30#q^=z@f*#unh0)gldo20t+%)bes)ah&%lj'
 DEBUG = True
 
 ALLOWED_HOSTS = [
+    'www.vladyatube.pythonanywhere.com',
+    'vladyatube.pythonanywhere.com',
+]
+
+ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
     '[::1]',
